@@ -1,0 +1,16 @@
+[
+{
+  "modid": "cougarmod",
+  "name": "BYU Cougars Mod",
+  "description": "Adds the ability to craft a BYU Football and turn a cougar into a Cosmo",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["James \"The Beast\" West"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
