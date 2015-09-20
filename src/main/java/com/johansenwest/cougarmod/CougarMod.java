@@ -10,9 +10,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
@@ -24,7 +26,8 @@ public class CougarMod
 
     public static Item pigskinItem;
     public static Item footballItem;
-
+    @SidedProxy(clientSide = "com.johansenwest.cougarmod.FootballClient", serverSide = "com.johansenwest.cougarmod.FootballCommon")
+    public static FootballCommon proxy;
     @EventHandler
     public void preinit(FMLPreInitializationEvent event)
     {
@@ -43,5 +46,9 @@ public class CougarMod
             renderItem.getItemModelMesher().register(pigskinItem, 0, new ModelResourceLocation(CougarMod.MODID + ":" + ((ItemPigskin) pigskinItem).getName(), "inventory"));
             renderItem.getItemModelMesher().register(footballItem, 0, new ModelResourceLocation(CougarMod.MODID + ":" + ((ItemFootball) footballItem).getName(), "inventory"));
         }
+        EntityRegistry.registerModEntity(EntityFootball.class, "Football", 4, this, 80, 3, true);
+
+        proxy.registerRenderThings();
+        proxy.registerSounds();
     }
 }
