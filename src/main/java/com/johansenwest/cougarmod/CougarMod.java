@@ -7,7 +7,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -39,7 +41,6 @@ public class CougarMod
     public void init(FMLInitializationEvent event)
     {
         // some example code
-        System.out.println("DIRT BLOCK >> "+Blocks.dirt.getUnlocalizedName());
         if(event.getSide() == Side.CLIENT)
         {
             RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
@@ -47,6 +48,13 @@ public class CougarMod
             renderItem.getItemModelMesher().register(footballItem, 0, new ModelResourceLocation(CougarMod.MODID + ":" + ((ItemFootball) footballItem).getName(), "inventory"));
         }
         EntityRegistry.registerModEntity(EntityFootball.class, "Football", 4, this, 80, 3, true);
+        ItemStack blueDye = new ItemStack(Items.dye, 1, 12);
+        GameRegistry.addRecipe(
+                new ItemStack(footballItem, 4),
+                " y ",
+                "yxy",
+                " y ",
+                'x', blueDye, 'y', pigskinItem);
 
         proxy.registerRenderThings();
         proxy.registerSounds();
